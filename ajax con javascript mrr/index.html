@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX Con JavaScript</title>
+</head>
+<body>
+    <button id="boton">pedir pagina</button>
+
+    <div id="contenedor">
+
+
+    </div>
+    
+</body>
+    <script>
+        function mostrar(){
+            const http = new XMLHttpRequest(); //solicitud http request.
+             const url = 'http://127.0.0.1:5500/pagina.html'; // Url de la pagina
+
+             http.onreadystatechange =  function(){
+                  if(this.readyState === 4 && this.status === 200)
+                   {
+                     console.log(this.responseText);
+                     document.getElementById('contenedor').innerHTML= this.responseText;
+                   }
+             } // callback que se ejecuta cada vez que cambie el readystate
+
+             http.open('GET',url);
+             http.send();    
+        }
+
+        document.getElementById('boton').addEventListener('click',function(){ mostrar();});
+
+    </script>
+</html>
